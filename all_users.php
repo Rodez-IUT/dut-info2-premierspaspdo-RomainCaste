@@ -16,7 +16,11 @@
 		throw new PDOException($e->getMessage(), (int)$e->getCode());
 	}
 	
-	$stmt = $pdo->query('SELECT users.id as users_id, username, email, name FROM users JOIN status ON users.status_id = status.id ORDER BY username');
+	$stmt = $pdo->query('SELECT users.id as users_id, username, email, name
+						 FROM users
+						 JOIN status
+						 ON users.status_id = status.id
+						 ORDER BY username');
 
 ?>
 <table>

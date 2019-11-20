@@ -20,6 +20,8 @@
 						 FROM users
 						 JOIN status
 						 ON users.status_id = status.id
+						 WHERE status.id = 2
+						 AND username LIKE \'e%\'
 						 ORDER BY username');
 
 ?>

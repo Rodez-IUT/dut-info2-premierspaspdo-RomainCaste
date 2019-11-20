@@ -16,13 +16,17 @@
 		throw new PDOException($e->getMessage(), (int)$e->getCode());
 	}
 	
-	$stmt = $pdo->query('SELECT users.id as users_id, username, email, name
+	$start_letter = 'e';
+	$status_id = 2;
+	
+	
+	$stmt = $pdo->query("SELECT users.id as users_id, username, email, name
 						 FROM users
 						 JOIN status
 						 ON users.status_id = status.id
-						 WHERE status.id = 2
-						 AND username LIKE \'e%\'
-						 ORDER BY username');
+						 WHERE status.id = ".$status_id."
+						 AND username LIKE '".$start_letter."%'
+						 ORDER BY username");
 
 ?>
 <table>

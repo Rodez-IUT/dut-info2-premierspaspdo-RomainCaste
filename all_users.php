@@ -17,15 +17,35 @@
 	}
 	
 	$start_letter = 'e';
-	$status_id = 2;
+	$status_id = 1;
 	
+	$frm = $pdo->query("SELECT * FROM status");
+	
+	?>
+	
+	<form method="GET" action="all_users.php">
+		<select name="status">
+			<?php
+			
+			while ($row = $frm->fetch()) {
+				echo "<option value=\"$row[id]\">$row[name]</option>";
+			}
+			?>
+			<input type="submit" value="envoyer"/>
+		</select>
+	</form>
+	
+	<?php
+	if (isset($_GET['status'])){
+		$status_id = $_GET['status'];
+	}
 	
 	$stmt = $pdo->query("SELECT users.id as users_id, username, email, name
 						 FROM users
 						 JOIN status
 						 ON users.status_id = status.id
-						 WHERE status.id = ".$status_id."
-						 AND username LIKE '".$start_letter."%'
+						 WHERE status.id = $status_id
+						 AND username LIKE '$start_letter%'
 						 ORDER BY username");
 
 ?>

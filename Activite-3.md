@@ -1,0 +1,1 @@
+Il y a deux apostrophes à la suite : LIKE 'a%'' OR 1 = 1; donc il y a une erreur.

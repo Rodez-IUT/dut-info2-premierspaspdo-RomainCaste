@@ -16,9 +16,6 @@
 		throw new PDOException($e->getMessage(), (int)$e->getCode());
 	}
 	
-	$start_letter = 'e';
-	$status_id = 1;
-	
 	$frm = $pdo->query("SELECT * FROM status");
 	
 	?>

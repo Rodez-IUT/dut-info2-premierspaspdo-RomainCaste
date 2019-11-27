@@ -23,19 +23,14 @@
 	
 	?>
 	
-	<form method="GET" action="all_users.php">
-		<select name="status">
-			<?php
-			
-			while ($row = $frm->fetch()) {
-				echo "<option value=\"$row[id]\">$row[name]</option>";
-			}
-			?>
-			<input type="submit" value="envoyer"/>
-		</select>
-	</form>
-	
-	<?php
+
+<?php
+	function get($name) {
+		return isset($_GET[$name]) ? $_GET[$name] : null;
+	}
+	$start_letter = htmlspecialchars(get("start_letter"));
+	$status_id = (int)get("status_id");
+
 	if (isset($_GET['status'])){
 		$status_id = $_GET['status'];
 	}
@@ -49,6 +44,15 @@
 						 ORDER BY username");
 
 ?>
+<form action="all_users.php" method="get">
+	Start with letter: <input name="start_letter" type="text" value="<?php echo get("start_letter") ?>">
+	and status is: <select name="status_id">
+			<option value="1" <?php if (get("status_id") == 1) echo 'selected' ?>>Waiting for account validation</option>
+			<option value="2" <?php if (get("status_id") == 2) echo 'selected' ?>>Active account</option>
+		</select>
+	<input type="submit" value="OK">
+</form>
+
 <table>
 	<tr>
 		<th>Id</th>
